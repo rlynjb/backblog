@@ -1,0 +1,14 @@
+{
+  "name": "backblog",
+  "version": "0.0.0",
+  "homepage": "https://github.com/rlynjb/backblog",
+  "authors": [
+    "RLyn Ben <rlynjb@gmail.com>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "backbone": "~1.2.1",
+    "jquery": "~2.1.4",
+    "Backbone.localStorage": "~1.1.16"
+  }
+}
