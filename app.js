@@ -20,24 +20,35 @@ $(function() {
 
   // View wrapper to render view child items
   var PostsView = Backbone.View.extend({
-    collection: new Posts(),
     initialize: function() {
-      this.render();
-      /*
-       * NOTE: do not remove, go back later and understand what is happening here
-       * */
-      /*this.listenTo(this.collection, 'sync', function() {
-        console.log(this.collection);
-      });*/
+      // Best practice to check if data is set
+      if (!this.collection) {
+        console.log('Collection is not set for this view.');
+      }
+
+      // equivalent to ajax get method
+      this.collection.fetch();
+      // once fetched, check if collection has completely loaded
+      // then run render
+      this.listenTo(this.collection, 'sync', this.render);
     },
     render: function() {
       /* 
-       * STEPS:
-       * do a fetch - this is equivalent to ajax get method
        * filter through all items in a collection
        * for each item, create a new PostView
        * append to root element, ex. ul   
-       * */
+       */
+      this.collection.each(function(model) {
+        var postView = new PostView({ model: model });
+        $('#main').append( postView.el );
+      }, this);
+
+      return this;
+
+      // This is another way of displaying data but doesnt not
+      // take advantage of Backbones' change events, etc
+      // Above solution is better
+      /*
       this.collection.fetch({
         success: function(a, b, c) {
           for (var k in b) {
@@ -58,23 +69,33 @@ $(function() {
         error: function() {
           console.log('error');
         }
-      });
+      });*/
     }
   });
-  var postsview = new PostsView();
+  // Best practice to set data on instance so view can be reusable
+  var postscollection = new Posts();
+  var postsview = new PostsView({
+    collection: postscollection
+  });
+
 
   var PostView = Backbone.View.extend({
-    model: new Post(),
     tagName: 'li',
     template: _.template( $('#postitem').html() ),
     initialize: function() {
+      // Best practice to check if data is set
+      if (!this.model) {
+        console.log('Model is not set for this view.');
+      }
+
       this.render();
     },
     render: function() {
-      this.$el.html( this.template(this.model.toJSON()) );
+      var html = this.template(this.model.toJSON());
+      this.$el.html(html);
+      return this;
     }
   });
-  var postview = new PostView();
 
 
 });
