@@ -68,6 +68,12 @@ $(function() {
       var html = this.template(this.model.toJSON());
       this.$el.html(html);
       return this;
+    },
+    events: {
+      'click .post-link': 'showPost'
+    },
+    showPost: function() {
+      console.log('post in detail: ' + this.model.id);
     }
   });
 
