@@ -40,42 +40,16 @@ $(function() {
        */
       this.collection.each(function(model) {
         var postView = new PostView({ model: model });
-        $('#main').append( postView.el );
+        this.$el.append( postView.render().el );
       }, this);
 
       return this;
-
-      // This is another way of displaying data but doesnt not
-      // take advantage of Backbones' change events, etc
-      // Above solution is better
-      /*
-      this.collection.fetch({
-        success: function(a, b, c) {
-          for (var k in b) {
-            // get instance of model
-            var post = new Post({
-              title: b[k]['title'],
-              body: b[k]['body']
-            });
-
-            // get instance of view and assign model
-            var postView = new PostView({ model: post });
-
-            // append in template
-            // this is a hack
-            $('#main').append( postView.el );
-          }
-        },
-        error: function() {
-          console.log('error');
-        }
-      });*/
     }
   });
   // Best practice to set data on instance so view can be reusable
-  var postscollection = new Posts();
   var postsview = new PostsView({
-    collection: postscollection
+    collection: new Posts(),
+    el: '#main'
   });
 
 
@@ -96,6 +70,5 @@ $(function() {
       return this;
     }
   });
-
 
 });
