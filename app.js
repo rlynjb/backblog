@@ -33,6 +33,9 @@ $(function() {
       this.listenTo(this.collection, 'sync', this.render);
     },
     render: function() {
+      // instead of appending items via append
+      // use DocumentFragment to avoid multiple DOM reflow
+      //var fragment = document.createDocumentFragment();
       /* 
        * filter through all items in a collection
        * for each item, create a new PostView
@@ -40,9 +43,11 @@ $(function() {
        */
       this.collection.each(function(model) {
         var postView = new PostView({ model: model });
+        //fragment.appendChild(postView).render().el;
         this.$el.append( postView.render().el );
       }, this);
 
+      //this.$el.html(fragment);
       return this;
     }
   });
