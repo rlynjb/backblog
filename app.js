@@ -25,6 +25,13 @@ $(function() {
 
   // --------------------------------------------------------------
 
+  /* 
+   * TODO:
+   * PostsView may need to be altered to fit with new
+   * Router and other pages
+   * Find a way to keep Views and Templates organized
+  */
+  // ABOUT page
   var About = Backbone.View.extend({
     id: "aboutpage",
     template: _.template( $('#aboutpage').html() ),
@@ -37,6 +44,9 @@ $(function() {
     }
   });
 
+  // ---------------------------
+
+  // HOME page
   // View wrapper to render view child items
   var PostsView = Backbone.View.extend({
     initialize: function() {
