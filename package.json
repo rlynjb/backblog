@@ -1,0 +1,22 @@
+{
+  "name": "backblog",
+  "version": "1.0.0",
+  "description": "a simple backbone.js blog",
+  "main": "app.js",
+  "devDependencies": {
+    "js-dev-server": "^0.1.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rlynjb/backblog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rlynjb/backblog/issues"
+  },
+  "homepage": "https://github.com/rlynjb/backblog#readme"
+}
