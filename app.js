@@ -88,30 +88,16 @@ $(function() {
       var html = this.template(this.model.toJSON());
       this.$el.html(html);
       return this;
-    },
+    }/*,
     events: {
       'click .post-link': 'showPost'
     },
     showPost: function(e) {
       e.preventDefault();
-      console.log('post in detail: ' + this.model.id);
-    }
-  });
 
-  // ---------------------------
-
-  // BLOG POST page
-  var PostPage = Backbone.View.extend({
-    //id: "post-page",
-    //template: _.template( $('#post-page').html() ),
-    initialize: function() {
-      console.log('post page has loaded');
-      //$('#content').html( this.el );
-      //this.render();
-    },
-    //render: function() {
-      //this.$el.html( this.template );
-    //}
+      // pass these attributes to PostPage view
+      console.log('title: ' + this.model.attributes['title']);
+    }*/
   });
 
   // ---------------------------
@@ -135,6 +121,26 @@ $(function() {
     }
   });
 
+  // ---------------------------
+
+  // BLOG POST page
+  /*
+  var PostPage = Backbone.View.extend({
+    id: "post-page",
+    template: _.template( $('#post-page').html() ),
+    initialize: function() {
+      console.log('post page has loaded');
+      $('#content').html( this.el );
+      this.render();
+    },
+    render: function() {
+      var html = this.template(this.model.toJSON());
+      this.$el.html(html);
+      return this;
+    }
+  });
+  */
+
   // --------------------------------------------------------------
 
   var BlogRouter = Backbone.Router.extend({
@@ -156,12 +162,20 @@ $(function() {
       this.view = new About();
     },
     showPost: function(id) {
+      console.log('show blog post # ' + id);
+      var d = new Post({id:id});
+      console.log(d);
       /*
        * TODO:
        * attempting to display individual blog post page
        * in a view
        * */
-      this.view = new PostPage();
+      /*
+      var d = new Posts();
+      d.fetch();
+      console.log(d);
+      this.view = new PostPage({model:d});
+      */
     }
   });
   var blogrouter = new BlogRouter();
