@@ -7,6 +7,23 @@ $(function() {
   var url = "https://backblog.firebaseio.com",
       root = "http://jsonplaceholder.typicode.com";
 
+  // --------------------------------------------------------------
+
+  var BlogRouter = Backbone.Router.extend({
+    routes: {
+      "about" : "showAbout"
+    },
+    showAbout: function() {
+      console.log('show about page');
+    }
+  });
+  var blogrouter = new BlogRouter();
+  //blogrouter.on('route:showAbout');
+  // Start Backbone history a necessary step for bookmarkable URL's
+  Backbone.history.start();
+
+  // --------------------------------------------------------------
+
   var Post = Backbone.Model.extend({
     defaults: {
       title: 'title here',
