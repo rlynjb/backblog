@@ -37,7 +37,6 @@ $(function() {
       this.$el.html( this.template );
     }
   });
-  var home = new Home();
 
   // View wrapper to render view child items
   var PostsView = Backbone.View.extend({
@@ -73,16 +72,10 @@ $(function() {
       return this;
     }
   });
-  // Best practice to set data on instance so view can be reusable
-  var postsview = new PostsView({
-    collection: new Posts(),
-    el: '#main'
-  });
-
 
   var PostView = Backbone.View.extend({
     tagName: 'li',
-    template: _.template( $('#postitems').html() ),
+    template: _.template( $('#post-items').html() ),
     initialize: function() {
       // Best practice to check if data is set
       if (!this.model) {
@@ -99,9 +92,26 @@ $(function() {
     events: {
       'click .post-link': 'showPost'
     },
-    showPost: function() {
+    showPost: function(e) {
+      e.preventDefault();
       console.log('post in detail: ' + this.model.id);
     }
+  });
+
+  // ---------------------------
+
+  // BLOG POST page
+  var PostPage = Backbone.View.extend({
+    //id: "post-page",
+    //template: _.template( $('#post-page').html() ),
+    initialize: function() {
+      console.log('post page has loaded');
+      //$('#content').html( this.el );
+      //this.render();
+    },
+    //render: function() {
+      //this.$el.html( this.template );
+    //}
   });
 
   // ---------------------------
@@ -129,10 +139,29 @@ $(function() {
 
   var BlogRouter = Backbone.Router.extend({
     routes: {
-      "about" : "showAbout"
+      "": "showHome",
+      "about": "showAbout",
+      "post/:id": "showPost"
+    },
+    showHome: function() {
+      var home = new Home();
+
+      // Best practice to set data on instance so view can be reusable
+      var postsview = new PostsView({
+        collection: new Posts(),
+        el: '#main'
+      });  
     },
     showAbout: function() {
       this.view = new About();
+    },
+    showPost: function(id) {
+      /*
+       * TODO:
+       * attempting to display individual blog post page
+       * in a view
+       * */
+      this.view = new PostPage();
     }
   });
   var blogrouter = new BlogRouter();

@@ -16,11 +16,17 @@
     <ul id="main"></ul>
   </script>
 
-  <script type="text/template" id="postitems">
-    <a href="#" class="post-link">
+  <script type="text/template" id="post-items">
+    <a href="#post/{{ id }}" class="post-link">
       <h2> {{ title }} </h2>
     </a>
     <p> {{ body }} </p>
+  </script>
+
+  <script type="text/template" id="post-page">
+    <a href="/">Go back to Home page</a>
+    <h1>{{ title }}</h1>
+    <p>{{ body }}</p>
   </script>
 
   <script type="text/template" id="about-page">
