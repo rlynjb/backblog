@@ -139,13 +139,29 @@ $(function() {
     }
   });
 
+  // ----------------------------
+  
+  // NEW BLOG POST page
+  var NewPost = Backbone.View.extend({
+    id: "new-post-page",
+    template: _.template( $('#new-post-page').html() ),
+    initialize: function() {
+      $("#content").html( this.el );
+      this.render();
+    },
+    render: function() {
+      this.$el.html( this.template );
+    }
+  });
+
   // --------------------------------------------------------------
 
   var BlogRouter = Backbone.Router.extend({
     routes: {
       "": "showHome",
       "about": "showAbout",
-      "post/:id": "showPost"
+      "post/:id": "showPost",
+      "new": "newPost"
     },
     showHome: function() {
       var home = new Home();
@@ -165,6 +181,9 @@ $(function() {
       this.listenTo( blogPost, 'sync', function() {
         this.view = new PostPage({ model: blogPost});
       });
+    },
+    newPost: function() {
+      this.view = new NewPost();
     }
   });
   var blogrouter = new BlogRouter();

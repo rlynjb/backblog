@@ -7,7 +7,7 @@
 <body>
   <header>
     <h1>Backblog - Simple Backbone.js Blog</h1>
-    <a href="/">Home</a> | <a href="#about">About</a>
+    <a href="/">Home</a> | <a href="#new">Create New Post</a> | <a href="#about">About</a>
   </header>
 
   <div id="content"></div>
@@ -26,6 +26,11 @@
     <a href="/">Go back to Home page</a>
     <h1>{{ title }}</h1>
     <p>{{ body }}</p>
+  </script>
+
+  <script type="text/template" id="new-post-page">
+    <a href="/">Go back to Home page</a>
+    <h1>Create a new post</h1>
   </script>
 
   <script type="text/template" id="about-page">
