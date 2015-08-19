@@ -12,7 +12,8 @@ $(function() {
       title: 'title here',
       id: 12345,
       body: 'body here'
-    }
+    },
+    urlRoot: root + "/posts"
   });
 
   var Posts = Backbone.Collection.extend({
@@ -124,12 +125,10 @@ $(function() {
   // ---------------------------
 
   // BLOG POST page
-  /*
   var PostPage = Backbone.View.extend({
     id: "post-page",
     template: _.template( $('#post-page').html() ),
     initialize: function() {
-      console.log('post page has loaded');
       $('#content').html( this.el );
       this.render();
     },
@@ -139,7 +138,6 @@ $(function() {
       return this;
     }
   });
-  */
 
   // --------------------------------------------------------------
 
@@ -162,20 +160,11 @@ $(function() {
       this.view = new About();
     },
     showPost: function(id) {
-      console.log('show blog post # ' + id);
-      var d = new Post({id:id});
-      console.log(d);
-      /*
-       * TODO:
-       * attempting to display individual blog post page
-       * in a view
-       * */
-      /*
-      var d = new Posts();
-      d.fetch();
-      console.log(d);
-      this.view = new PostPage({model:d});
-      */
+      var blogPost = new Post({id:id});
+      blogPost.fetch();
+      this.listenTo( blogPost, 'sync', function() {
+        this.view = new PostPage({ model: blogPost});
+      });
     }
   });
   var blogrouter = new BlogRouter();
