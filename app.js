@@ -25,30 +25,23 @@ $(function() {
 
   // --------------------------------------------------------------
 
-  /* 
-   * TODO:
-   * PostsView may need to be altered to fit with new
-   * Router and other pages
-   * Find a way to keep Views and Templates organized
-  */
-  // ABOUT page
-  var About = Backbone.View.extend({
-    id: "aboutpage",
-    template: _.template( $('#aboutpage').html() ),
+  // HOME page
+  var Home = Backbone.View.extend({
+    id: "home-page",
+    template: _.template( $('#home-page').html() ),
     initialize: function() {
-      $("body").html( this.el );
+      $("#content").html( this.el );
       this.render();
     },
     render: function() {
       this.$el.html( this.template );
     }
   });
+  var home = new Home();
 
-  // ---------------------------
-
-  // HOME page
   // View wrapper to render view child items
   var PostsView = Backbone.View.extend({
+    id: 'home-page',
     initialize: function() {
       // Best practice to check if data is set
       if (!this.collection) {
@@ -89,7 +82,7 @@ $(function() {
 
   var PostView = Backbone.View.extend({
     tagName: 'li',
-    template: _.template( $('#postitem').html() ),
+    template: _.template( $('#postitems').html() ),
     initialize: function() {
       // Best practice to check if data is set
       if (!this.model) {
@@ -108,6 +101,27 @@ $(function() {
     },
     showPost: function() {
       console.log('post in detail: ' + this.model.id);
+    }
+  });
+
+  // ---------------------------
+
+  /* 
+   * TODO:
+   * PostsView may need to be altered to fit with new
+   * Router and other pages
+   * Find a way to keep Views and Templates organized
+  */
+  // ABOUT page
+  var About = Backbone.View.extend({
+    id: "about-page",
+    template: _.template( $('#about-page').html() ),
+    initialize: function() {
+      $("#content").html( this.el );
+      this.render();
+    },
+    render: function() {
+      this.$el.html( this.template );
     }
   });
 
