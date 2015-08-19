@@ -6,6 +6,7 @@
 
 <body>
   <h1>Backblog - Simple Backbone.js Blog</h1>
+  <a href="#about">About</a>
   <ul id="main"></ul>
 
   <script type="text/template" id="postitem">
@@ -13,6 +14,11 @@
       <h2> {{ title }} </h2>
     </a>
     <p> {{ body }} </p>
+  </script>
+
+  <script type="text/template" id="aboutpage">
+    <h1>This is the About Page</h1>
+    <a href='/'>Go to Blog</a>
   </script>
 
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
