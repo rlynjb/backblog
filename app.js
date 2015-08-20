@@ -154,6 +154,16 @@ $(function() {
     }
   });
 
+  // NOTE:
+  // Transfer code from showPost router here
+  // its best practice for router and to avoid clutter
+  // WAS transferring code but came across an Event issue with listenTo
+  var blogPostController = {
+    showBlogPost: function() {
+      
+    }
+  }
+
   // --------------------------------------------------------------
 
   var BlogRouter = Backbone.Router.extend({
@@ -164,7 +174,7 @@ $(function() {
       "new": "newPost"
     },
     showHome: function() {
-      var home = new Home();
+      this.view = new Home();
 
       // Best practice to set data on instance so view can be reusable
       var postsview = new PostsView({
@@ -176,6 +186,11 @@ $(function() {
       this.view = new About();
     },
     showPost: function(id) {
+      // Best pratice:
+      // Avoid this chunk of functional code in router
+      // It is best to keep code minimal so it doesnt clutter router
+      // *Also avoid instantiating inside router
+      // Instead, create a Controller and call controller method from router
       var blogPost = new Post({id:id});
       blogPost.fetch();
       this.listenTo( blogPost, 'sync', function() {
