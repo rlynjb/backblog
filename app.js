@@ -158,9 +158,13 @@ $(function() {
   // Transfer code from showPost router here
   // its best practice for router and to avoid clutter
   // WAS transferring code but came across an Event issue with listenTo
-  var blogPostController = {
-    showBlogPost: function() {
-      
+  var blogController = {
+    showBlogPost: function(id, e) {
+      var blogPost = new Post({id:id});
+      blogPost.fetch();
+      e.listenTo( blogPost, 'sync', function() {
+        e.view = new PostPage({ model: blogPost});
+      });     
     }
   }
 
@@ -191,11 +195,8 @@ $(function() {
       // It is best to keep code minimal so it doesnt clutter router
       // *Also avoid instantiating inside router
       // Instead, create a Controller and call controller method from router
-      var blogPost = new Post({id:id});
-      blogPost.fetch();
-      this.listenTo( blogPost, 'sync', function() {
-        this.view = new PostPage({ model: blogPost});
-      });
+      var e = this;
+      blogController.showBlogPost(id, e);
     },
     newPost: function() {
       this.view = new NewPost();
