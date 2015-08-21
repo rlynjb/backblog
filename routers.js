@@ -4,11 +4,11 @@
 // WAS transferring code but came across an Event issue with listenTo
 var blogController = {
   showBlogPost: function(id, e) {
-    var blogPost = new Post({id:id});
+    var blogPost = new PostModel({id:id});
     blogPost.fetch();
     e.listenTo( blogPost, 'sync', function() {
       e.view = new PostPage({ model: blogPost});
-    });     
+    });
   }
 }
 
@@ -26,7 +26,7 @@ var BlogRouter = Backbone.Router.extend({
 
     // Best practice to set data on instance so view can be reusable
     var postsview = new PostsView({
-      collection: new Posts(),
+      collection: new PostsCollection(),
       el: '#main'
     });  
   },
