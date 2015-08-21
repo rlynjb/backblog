@@ -4,7 +4,8 @@
   "description": "a simple backbone.js blog",
   "main": "app.js",
   "devDependencies": {
-    "js-dev-server": "^0.1.1"
+    "js-dev-server": "^0.1.1",
+    "json-server": "~0.7.25"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
