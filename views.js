@@ -130,6 +130,11 @@ var NewPostPageView = Backbone.View.extend({
     "click #submitPost": "submitPost"
   },
   submitPost: function(e) {
+    /*
+     * REMINDER:
+     * We dont need to assign an ID
+     * Collection and Model automatically assigns primary/unique ID
+     * */
     var postAttr = {
       title: $('#postTitle').val(),
       body: $('#postText').val()
@@ -138,14 +143,10 @@ var NewPostPageView = Backbone.View.extend({
      * This works but it seems HACKY to me
      * There must be a proper backbonejs way
      * */
-    var g = new BlogPostCollection();
+    var g = new PostsCollection();
     var f = new BlogRouter();
-    // returns SUCCESS - 201
-    // trust that it returns SUCCESS till we get a restful server
-    // up and running
-    // cant really do much with jsonplaceholder site
     g.create(
-      [postAttr],
+      postAttr,
       {
         success: function(a,b,c) {
           console.log('success');
@@ -157,6 +158,5 @@ var NewPostPageView = Backbone.View.extend({
       }
     );
     console.log(g);
-    console.log('submitting post in progress: ' + JSON.stringify(postAttr));
   }
 });
