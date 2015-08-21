@@ -4,4 +4,5 @@ _.templateSettings = {
 };
 
 var url = "https://backblog.firebaseio.com",
-    root = "http://jsonplaceholder.typicode.com";
+    root = "http://jsonplaceholder.typicode.com",
+    localserver = "http://localhost:3000";

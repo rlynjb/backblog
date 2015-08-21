@@ -4,7 +4,7 @@ var PostModel = Backbone.Model.extend({
     id: 12345,
     body: 'body here'
   },
-  urlRoot: root + "/posts"
+  urlRoot: localserver + "/posts"
 });
 
 

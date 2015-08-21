@@ -1,6 +1,6 @@
 var PostsCollection = Backbone.Collection.extend({
   model: PostModel,
-  url: root + "/posts",
+  url: localserver + "/posts",
   parse: function(response) {
     return response;
   }
@@ -14,7 +14,7 @@ var PostsCollection = Backbone.Collection.extend({
  * */
 var BlogPostCollection = Backbone.Collection.extend({
   model: BlogPostModel,
-  url: root + "/posts",
+  url: localserver + "/posts",
   parse: function(response) {
     return response;
   }
