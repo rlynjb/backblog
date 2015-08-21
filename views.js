@@ -130,11 +130,6 @@ var NewPostPageView = Backbone.View.extend({
     "click #submitPost": "submitPost"
   },
   submitPost: function(e) {
-    /*
-     * REMINDER:
-     * We dont need to assign an ID
-     * Collection and Model automatically assigns primary/unique ID
-     * */
     var postAttr = {
       title: $('#postTitle').val(),
       body: $('#postText').val()
