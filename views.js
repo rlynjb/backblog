@@ -141,6 +141,7 @@ var NewPostPageView = Backbone.View.extend({
     }
     /*
      * This works but it seems HACKY to me
+     * coz we are re-instantiating PostsCollection and BlogRouter
      * There must be a proper backbonejs way
      * */
     var g = new PostsCollection();
