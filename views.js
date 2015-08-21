@@ -116,6 +116,7 @@ var PostPageView = Backbone.View.extend({
 // NEW BLOG POST page
 var NewPostPageView = Backbone.View.extend({
   id: "new-post-page",
+  tagName: 'form',
   template: _.template( $('#new-post-page').html() ),
   initialize: function() {
     $("#content").html( this.el );
@@ -123,5 +124,20 @@ var NewPostPageView = Backbone.View.extend({
   },
   render: function() {
     this.$el.html( this.template );
+    return this;
+  },
+  events: {
+    "click #submitPost": "submitPost"
+  },
+  submitPost: function(e) {
+    var postAttr = {
+      title: $('#postTitle').val(),
+      body: $('#postText').val()
+    }
+    var g = new BlogPostCollection();
+    g.add([postAttr]);
+    console.log(g);
+
+    console.log('submitting post in progress: ' + JSON.stringify(postAttr));
   }
 });
