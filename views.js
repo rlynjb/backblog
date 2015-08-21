@@ -1,5 +1,5 @@
 // HOME page
-var Home = Backbone.View.extend({
+var HomePageView = Backbone.View.extend({
   id: "home-page",
   template: _.template( $('#home-page').html() ),
   initialize: function() {
@@ -82,7 +82,7 @@ var PostView = Backbone.View.extend({
  * Find a way to keep Views and Templates organized
 */
 // ABOUT page
-var About = Backbone.View.extend({
+var AboutPageView = Backbone.View.extend({
   id: "about-page",
   template: _.template( $('#about-page').html() ),
   initialize: function() {
@@ -97,7 +97,7 @@ var About = Backbone.View.extend({
 // ---------------------------
 
 // BLOG POST page
-var PostPage = Backbone.View.extend({
+var PostPageView = Backbone.View.extend({
   id: "post-page",
   template: _.template( $('#post-page').html() ),
   initialize: function() {
@@ -114,7 +114,7 @@ var PostPage = Backbone.View.extend({
 // ----------------------------
 
 // NEW BLOG POST page
-var NewPost = Backbone.View.extend({
+var NewPostPageView = Backbone.View.extend({
   id: "new-post-page",
   template: _.template( $('#new-post-page').html() ),
   initialize: function() {

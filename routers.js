@@ -7,7 +7,7 @@ var blogController = {
     var blogPost = new PostModel({id:id});
     blogPost.fetch();
     e.listenTo( blogPost, 'sync', function() {
-      e.view = new PostPage({ model: blogPost});
+      e.view = new PostPageView({ model: blogPost});
     });
   }
 }
@@ -22,7 +22,7 @@ var BlogRouter = Backbone.Router.extend({
     "new": "newPost"
   },
   showHome: function() {
-    this.view = new Home();
+    this.view = new HomePageView();
 
     // Best practice to set data on instance so view can be reusable
     var postsview = new PostsView({
@@ -31,7 +31,7 @@ var BlogRouter = Backbone.Router.extend({
     });  
   },
   showAbout: function() {
-    this.view = new About();
+    this.view = new AboutPageView();
   },
   showPost: function(id) {
     // Best pratice:
@@ -43,7 +43,7 @@ var BlogRouter = Backbone.Router.extend({
     blogController.showBlogPost(id, e);
   },
   newPost: function() {
-    this.view = new NewPost();
+    this.view = new NewPostPageView();
   }
 });
 var blogrouter = new BlogRouter();
