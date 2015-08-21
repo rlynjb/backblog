@@ -13,8 +13,8 @@ var PostsCollection = Backbone.Collection.extend({
  * Might consider creating my own API, Express or rails
  * */
 var BlogPostCollection = Backbone.Collection.extend({
-  model: PostModel,
-  url: url + "/posts",
+  model: BlogPostModel,
+  url: root + "/posts",
   parse: function(response) {
     return response;
   }
