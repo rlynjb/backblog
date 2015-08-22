@@ -12,7 +12,7 @@ var CommentListWrapperView = Backbone.View.extend({
   collection: new CommentsCollection(),
   initialize: function() {
     // detects the #comments outside or parent view
-    this.$el.html('sample shit');
+    //this.$el.html('sample shit');
 
     this.collection.fetch();
     this.listenTo(this.collection, 'sync', this.render);
@@ -25,14 +25,11 @@ var CommentListWrapperView = Backbone.View.extend({
      * append to its root element
      * filter only comments associated with post ID
      * */
-    console.log(this.collection);
-    /*
     this.collection.each(function(model){
-      var commentItem = new CommentItemView({model:model});
+      var commentItem = new CommentItemView({ model: model });
       this.$el.append( commentItem.render().el );
     }, this);
     return this;
-    */
   }
 });
 
@@ -41,11 +38,16 @@ var CommentItemView = Backbone.View.extend({
   tagName: 'li',
   template: _.template( $('#comment-list').html() ),
   initialize: function() {
+    // Best practice to check if data is set
+    if (!this.model) {
+      console.log('Model is not set for this view.');
+    }
+
     this.render();
   },
   render: function() {
-    this.$el.html( this.template );
+    var html = this.template( this.model.toJSON() );
+    this.$el.html( html );
+    return this;
   }
 });
-
-var cmentwrapper = new CommentListWrapperView();
