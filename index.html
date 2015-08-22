@@ -26,6 +26,23 @@
     <a href="/">Go back to Home page</a>
     <h1>{{ title }}</h1>
     <p>{{ body }}</p>
+
+    <hr />
+    <div id="comment-block-wrapper">
+      <h3>Comments</h3>
+      <ul id="comments"></ul>
+    </div>
+  </script>
+
+  <script type="text/template" id="comment-list">
+    <p>hello is a first comment</p>
+  </script>
+
+  <script type="text/template" id="comment-form">
+    <h3>Add Comment</h3>
+    <input type="text" id="cmtName" placeholder="name" /><br />
+    <textarea id="cmtText"></textarea><br />
+    <button id="submitComment"> Submit </button>
   </script>
 
   <script type="text/template" id="new-post-page">
@@ -48,7 +65,9 @@
   <script src="app/app.js"></script>
   <script src="app/models.js"></script>
   <script src="app/collections.js"></script>
-  <script src="app/views.js"></script>
+  <script src="app/views/pages.js"></script>
+  <script src="app/views/posts.js"></script>
+  <script src="app/views/comments.js"></script>
   <script src="app/routers.js"></script>
 </body>
 </html>

@@ -5,3 +5,8 @@ var PostsCollection = Backbone.Collection.extend({
     return response;
   }
 });
+
+var CommentsCollection = Backbone.Collection.extend({
+  model: CommentModel,
+  url: localserver + '/comments'
+});

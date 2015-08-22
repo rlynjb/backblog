@@ -23,12 +23,7 @@ var BlogRouter = Backbone.Router.extend({
   },
   showHome: function() {
     this.view = new HomePageView();
-
-    // Best practice to set data on instance so view can be reusable
-    var postsview = new PostsView({
-      collection: new PostsCollection(),
-      el: '#main'
-    });  
+    var postsView = new PostsView(); 
   },
   showAbout: function() {
     this.view = new AboutPageView();

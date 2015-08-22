@@ -10,3 +10,10 @@ var PostModel = Backbone.Model.extend({
   },
   urlRoot: localserver + "/posts"
 });
+
+var CommentModel = Backbone.Model.extend({
+  defaults: {
+    body: 'sample comments',
+    postId: 1
+  }
+});
