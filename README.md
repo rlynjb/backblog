@@ -23,6 +23,7 @@ and visit the ff. local url
 - used json-server as temporary fake restful api
 - also used js-dev-server as a replacement for nginx or apache
 - learned basics of how a to populate collection from a specific model, ex. Post #1 (Model), populate all Comments (Collection) that pertain to Post #1
+
 ------
 
 # week2 (goals)
