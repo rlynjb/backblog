@@ -7,87 +7,41 @@
       "body": "hello world body"
     },
     {
-      "0": {
-        "title": "erasera",
-        "body": "asras"
-      },
-      "title": "title here",
-      "body": "body here",
-      "id": 2
-    },
-    {
-      "0": {
-        "title": "asdasd",
-        "body": "asdasd"
-      },
-      "title": "title here",
-      "body": "body here",
-      "id": 3
-    },
-    {
-      "0": {
-        "title": "asdasd",
-        "body": "aasdasd"
-      },
-      "title": "title here",
-      "body": "body here",
-      "id": 4
-    },
-    {
-      "0": {
-        "title": "sss",
-        "body": "sss"
-      },
-      "title": "title here",
-      "body": "body here",
-      "id": 5
-    },
-    {
       "title": "sss",
       "body": "sss",
-      "id": 6
+      "id": 2
     },
     {
       "title": "ddd",
       "body": "ddd",
-      "id": 7
+      "id": 3
     },
     {
-      "title": "qqq",
-      "body": "qqq",
-      "id": 8
-    },
-    {
-      "title": "kirby",
-      "body": "hello kirby",
-      "id": 9
-    },
-    {
-      "title": "www",
-      "body": "www",
-      "id": 10
-    },
-    {
-      "title": "another sample post",
-      "body": "yeyeyeyeye",
-      "id": 11
-    },
-    {
-      "title": "sadfsfggesg",
-      "body": "safgsfgsdfg",
-      "id": 12
-    },
-    {
-      "title": "adadasd",
-      "body": "sdfsdfsdf",
-      "id": 13
+      "title": "hello world",
+      "body": "this is a sample blog post",
+      "id": 4
     }
   ],
   "comments": [
     {
       "id": 1,
-      "body": "some comment",
+      "body": "comment for post 1",
       "postId": 1
+    },
+    {
+      "id": 2,
+      "body": "another comment for post 1",
+      "postId": 1
+    },
+    {
+      "id": 3,
+      "body": "comment for post 2",
+      "postId": 2
+    },
+    {
+      "id": 4,
+      "body": "comment for post 3",
+      "postId": 3
     }
   ]
 }
