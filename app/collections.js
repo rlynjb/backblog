@@ -16,15 +16,20 @@ var CommentsCollection = Backbone.Collection.extend({
      * from Model and Views
      * https://github.com/jashkenas/backbone/issues/661
      * */
-    this.id = options.id;
-    console.log(options);
-    console.log(options.post.id);
+    /*
+     * REMINDER:
+     * it sets a default for the incoming parameters
+     * */
+    options = options || {};
+    if(!options.post) { return; }
 
-    return this;
+    this.id = options.post.id;
+    //console.log(options.post.id);
   },
   url: function() {
-    console.log('id: ' + this.id);
-    return localserver + "/posts/" + "3" + "/comments";
+    // this returns undefined for some reason
+    console.log(this.id);
+    return localserver + "/posts/" + 3 + "/comments";
   },
   model: CommentModel
 });
