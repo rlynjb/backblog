@@ -6,6 +6,7 @@
  * - think about the item view first
  * - and then, where these items are going to output
  * */
+/*
 var CommentListWrapperView = Backbone.View.extend({
   id: "comment-list-wrapper",
   el: "#comments",
@@ -18,13 +19,6 @@ var CommentListWrapperView = Backbone.View.extend({
     this.listenTo(this.collection, 'sync', this.render);
   },
   render: function() {
-    /*
-     * TODO:
-     * go through all each comment items
-     * for each item, create a view
-     * append to its root element
-     * filter only comments associated with post ID
-     * */
     this.collection.each(function(model){
       var commentItem = new CommentItemView({ model: model });
       this.$el.append( commentItem.render().el );
@@ -51,3 +45,4 @@ var CommentItemView = Backbone.View.extend({
     return this;
   }
 });
+*/

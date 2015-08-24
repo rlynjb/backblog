@@ -41,11 +41,15 @@ var PostPageView = Backbone.View.extend({
     this.render();
   },
   render: function() {
+    // pass post id here for comments to load
+    //var p = new PostModel({ id: this.model.id });
+    //console.log(p.comments);
+    
     var html = this.template(this.model.toJSON());
     this.$el.html(html);
 
     // render subviews that are inside of this parent view
-    var commentListWrapper = new CommentListWrapperView();
+    //var commentListWrapper = new CommentListWrapperView();
 
     return this;
   }

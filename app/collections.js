@@ -23,13 +23,25 @@ var CommentsCollection = Backbone.Collection.extend({
     options = options || {};
     if(!options.post) { return; }
 
-    this.id = options.post.id;
-    //console.log(options.post.id);
+    this.post = options.post;
   },
   url: function() {
     // this returns undefined for some reason
-    console.log(this.id);
-    return localserver + "/posts/" + 3 + "/comments";
+    //console.log('from commentcollection: ', this.post.url());
+    return this.post.url() + "/comments";
   },
   model: CommentModel
 });
+
+var c = new CommentsCollection();
+console.log(c);
+
+var p = new PostModel({id:4});
+console.log(p.comments.url());
+p.fetch({
+  success: function(a,b,c) {
+    console.log(a);
+    console.log(b)
+  }
+});
+//console.log(p);
