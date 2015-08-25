@@ -20,6 +20,11 @@
       "title": "hello world",
       "body": "this is a sample blog post",
       "id": 4
+    },
+    {
+      "title": "another goofy post",
+      "body": "goofy goofy kirby post",
+      "id": 5
     }
   ],
   "comments": [

@@ -47,5 +47,36 @@ var CommentFormView = Backbone.View.extend({
   render: function() {
     this.$el.html( this.template );
     return this;
+  },
+  events: {
+    "click #submitComment": "submitComment"
+  },
+  submitComment: function() {
+    var postAttr = {
+      postId: 'magic post id number here',
+      name: $('#cmtName').val(),
+      body: $('#cmtText').val()
+    }
+
+    /*
+     * This works but it seems HACKY to me
+     * coz we are re-instantiating PostsCollection and BlogRouter
+     * There must be a proper backbonejs way
+     * */
+    var g = new CommentsCollection();
+    var f = new BlogRouter();
+    g.create(
+      postAttr,
+      {
+        success: function(a,b,c) {
+          console.log('success');
+          f.navigate('', {trigger:true});
+        },
+        error: function() {
+          console.log('error');
+        }
+      }
+    );
+    console.log(g);
   }
 });

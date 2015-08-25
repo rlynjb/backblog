@@ -30,8 +30,6 @@ var AboutPageView = Backbone.View.extend({
   }
 });
 
-// ---------------------------
-
 // BLOG POST page
 var PostPageView = Backbone.View.extend({
   id: "post-page",
@@ -50,8 +48,6 @@ var PostPageView = Backbone.View.extend({
     return this;
   }
 });
-
-// ----------------------------
 
 // NEW BLOG POST page
 var NewPostPageView = Backbone.View.extend({
