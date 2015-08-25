@@ -1,8 +1,7 @@
 var CommentModel = Backbone.Model.extend({
-  /*defaults: {
-    body: 'sample comments',
-    postId: 1
-  }*/
+  initialize: function() {
+    console.log('comment model does run');
+  }
 });
 
 var CommentsCollection = Backbone.Collection.extend({
@@ -21,39 +20,30 @@ var CommentsCollection = Backbone.Collection.extend({
      * */
     //options = options || {};
     //if(!options.post) { return; }
+    
+    console.log('checking comment model: ', this.model);
 
     this.post = options.post;
-    console.log('post: ', this.post.id);
+    if(typeof this.post.id === 'undefined') { return; }
+    this.url();
+    console.log('inside of comments collection: ', this);
   },
   url: function() {
-    // this doesnt return post id.. its just the url
-    console.log(this.post.url());
-    return this.post.url() + "/comments";
+    return this.post.url() + "/" + this.post.id + "/comments";
   }
 });
 
 var PostModel = Backbone.Model.extend({
+  urlRoot: "http://jsonplaceholder.typicode.com" + "/posts",
   initialize: function() {
     /*
      * we are connecting Comments collection 
      * to each post item by passing along post id
      * */
     this.comments = new CommentsCollection([], { post: this });
-  },
-  // a helper function
-  addComment: function(text) {
-    this.comments.create({ text: text });
-  },
-  /*defaults: {
-    title: 'title here',
-    body: 'body here'
-  },*/
-  urlRoot: localserver + "/posts"
+    console.log('inside of post model: ', this.comments);
+  }
 });
-
-var pm = new PostModel();
-pm.comments.fetch();
-console.log('fetching: ', pm);
 
 /*
  * NOTE:
@@ -67,13 +57,15 @@ console.log('fetching: ', pm);
 
 var PostsCollection = Backbone.Collection.extend({
   model: PostModel,
-  url: localserver + "/posts?_sort=views&_order=DESC",
+  url: "http://jsonplaceholder.typicode.com" + "/posts?_sort=views&_order=DESC",
   initialize: function() {
     /*
      * whenever we fetch in the collection we want to run getComments
      * and using this as the context
      * */
+    console.log('inside of posts collection', this);
     this.on('reset', this.getComments, this);
+    this.getComments();
   },
   getComments: function() {
     this.each(function(post) {
@@ -85,4 +77,4 @@ var PostsCollection = Backbone.Collection.extend({
 
 var pc = new PostsCollection();
 pc.fetch();
-//console.log(pc);
+console.log('after fetched: ', pc);
