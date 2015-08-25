@@ -1,6 +1,6 @@
 var CommentModel = Backbone.Model.extend({
   initialize: function() {
-    console.log('comment model does run');
+    //console.log('comment model does run');
   }
 });
 
@@ -20,11 +20,11 @@ var CommentsCollection = Backbone.Collection.extend({
      * */
     //options = options || {};
     //if(!options.post) { return; }
-    
+
     this.post = options.post;
     if(typeof this.post.id === 'undefined') { return; }
-    this.url();
-    console.log('inside of comments collection: ', this);
+    //this.url();
+    //console.log('inside of comments collection: ', this);
   },
   url: function() {
     return this.post.url() + "/comments";
@@ -35,13 +35,16 @@ var PostModel = Backbone.Model.extend({
   //urlRoot: "http://jsonplaceholder.typicode.com" + "/posts",
   initialize: function() {
     this.comments = new CommentsCollection([], { post: this });
-    console.log('inside of post model: ', this.comments);
+    //console.log('inside of post model: ', this.comments);
+  },
+  addComment: function(text) {
+    this.comments.create({ text: text });
   }
 });
 
 /*
  * NOTE:
- * there is no infrastructure that connects our Collection to Model
+ * there is no Backbone infrastructure that connects our Collection to Model
  * coz every Model is a js object, we can set our property
  * 
  * whenever we fetch our post collection from the server
@@ -53,18 +56,24 @@ var PostsCollection = Backbone.Collection.extend({
   model: PostModel,
   url: "http://jsonplaceholder.typicode.com" + "/posts?_sort=views&_order=DESC",
   initialize: function() {
-    console.log('inside of posts collection', this);
+    //console.log('inside of posts collection', this);
     this.on('reset', this.getComments, this);
     this.getComments();
   },
   getComments: function() {
-    this.each(function(post) {
-      post.comments = new CommentsCollection([], { post: post });
-      post.comments.fetch();
+    var g = new CommentsCollection([], { comments: post });
+    g.fetch();
+    console.log(g);
+    /*
+    this.each(function(comments) {
+      console.log(comments);
+      comments.comments = new CommentsCollection([], { comments: comments });
+      comments.comments.fetch();
     });
+    */
   }
 });
 
 var pc = new PostsCollection();
 pc.fetch();
-console.log('after fetched: ', pc);
+//console.log('after fetched: ', pc);
