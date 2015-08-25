@@ -37,3 +37,15 @@ var CommentItemView = Backbone.View.extend({
     return this;
   }
 });
+
+var CommentFormView = Backbone.View.extend({
+  el: "#commentForm",
+  template: _.template( $('#comment-form').html() ),
+  initialize: function() {
+    this.render();
+  },
+  render: function() {
+    this.$el.html( this.template );
+    return this;
+  }
+});
