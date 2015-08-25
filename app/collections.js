@@ -1,13 +1,14 @@
-var PostsCollection = Backbone.Collection.extend({
-  model: PostModel,
-  url: localserver + "/posts?_sort=views&_order=DESC",
-  parse: function(response) {
-    return response;
-  }
+var CommentModel = Backbone.Model.extend({
+  /*defaults: {
+    body: 'sample comments',
+    postId: 1
+  }*/
 });
 
-
 var CommentsCollection = Backbone.Collection.extend({
+  /*
+   * One of the options is the Parent model that will hold this collection
+   * */
   initialize: function(models, options) {
     /*
      * TODO:
@@ -26,22 +27,30 @@ var CommentsCollection = Backbone.Collection.extend({
     this.post = options.post;
   },
   url: function() {
-    // this returns undefined for some reason
-    //console.log('from commentcollection: ', this.post.url());
     return this.post.url() + "/comments";
   },
   model: CommentModel
 });
 
-var c = new CommentsCollection();
-console.log(c);
-
-var p = new PostModel({id:4});
-console.log(p.comments.url());
-p.fetch({
-  success: function(a,b,c) {
-    console.log(a);
-    console.log(b)
-  }
+var PostModel = Backbone.Model.extend({
+  initialize: function() {
+    /*
+     * we are connecting Comments collection 
+     * to each post item by passing along post id
+     * */
+    this.comments = new CommentsCollection([], { post: this });
+  },
+  /*defaults: {
+    title: 'title here',
+    body: 'body here'
+  },*/
+  //urlRoot: localserver + "/posts"
 });
-//console.log(p);
+/*
+var PostsCollection = Backbone.Collection.extend({
+  model: PostModel,
+  url: localserver + "/posts?_sort=views&_order=DESC",
+  parse: function(response) {
+    return response;
+  }
+});*/
