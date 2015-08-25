@@ -1,8 +1,4 @@
-var CommentModel = Backbone.Model.extend({
-  initialize: function() {
-    //console.log('comment model does run');
-  }
-});
+var CommentModel = Backbone.Model.extend({});
 
 var CommentsCollection = Backbone.Collection.extend({
   model: CommentModel,
@@ -32,14 +28,14 @@ var CommentsCollection = Backbone.Collection.extend({
 });
 
 var PostModel = Backbone.Model.extend({
-  //urlRoot: "http://jsonplaceholder.typicode.com" + "/posts",
+  urlRoot: "http://jsonplaceholder.typicode.com" + "/posts",
   initialize: function() {
     this.comments = new CommentsCollection([], { post: this });
     //console.log('inside of post model: ', this.comments);
-  },
+  }/*,
   addComment: function(text) {
     this.comments.create({ text: text });
-  }
+  }*/
 });
 
 /*
@@ -54,26 +50,31 @@ var PostModel = Backbone.Model.extend({
 
 var PostsCollection = Backbone.Collection.extend({
   model: PostModel,
-  url: "http://jsonplaceholder.typicode.com" + "/posts?_sort=views&_order=DESC",
-  initialize: function() {
+  url: "http://jsonplaceholder.typicode.com" + "/posts?_sort=views&_order=DESC"
+  //initialize: function() {
     //console.log('inside of posts collection', this);
-    this.on('reset', this.getComments, this);
-    this.getComments();
-  },
-  getComments: function() {
-    var g = new CommentsCollection([], { comments: post });
-    g.fetch();
-    console.log(g);
     /*
-    this.each(function(comments) {
-      console.log(comments);
-      comments.comments = new CommentsCollection([], { comments: comments });
-      comments.comments.fetch();
-    });
-    */
-  }
+     * whenever we reset this collection
+     * this could be by doing a fetch on server
+     * we want to run getComments function
+     * using 'this' as the context
+     * */
+    //this.on('reset', this.getComments, this);
+    //this.getComments();
+  //}
+  //getComments: function() {
+    /*
+     * for each post that is part of this collection
+     * we want to set the model.comments equal to a 
+     * new CommentsCollection here
+     * we need to pass as the post here as the post itself
+     * */
+    //this.each(function(post) {
+      //post.comments = new CommentsCollection([], { post: post });
+      //post.comments.fetch();
+    //});
+  //}
 });
 
-var pc = new PostsCollection();
-pc.fetch();
-//console.log('after fetched: ', pc);
+//var pc = new PostsCollection();
+//pc.fetch();

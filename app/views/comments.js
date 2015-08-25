@@ -6,7 +6,7 @@
  * - think about the item view first
  * - and then, where these items are going to output
  * */
-/*
+
 var CommentListWrapperView = Backbone.View.extend({
   id: "comment-list-wrapper",
   el: "#comments",
@@ -45,4 +45,3 @@ var CommentItemView = Backbone.View.extend({
     return this;
   }
 });
-*/

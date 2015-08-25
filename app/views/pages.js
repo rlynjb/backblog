@@ -49,7 +49,7 @@ var PostPageView = Backbone.View.extend({
     this.$el.html(html);
 
     // render subviews that are inside of this parent view
-    //var commentListWrapper = new CommentListWrapperView();
+    var commentListWrapper = new CommentListWrapperView();
 
     return this;
   }
