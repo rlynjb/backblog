@@ -1,13 +1,7 @@
-var PostsCollection = Backbone.Collection.extend({
-  model: PostModel,
-  url: localserver + "/posts?_sort=views&_order=DESC",
-  parse: function(response) {
-    return response;
-  }
-});
-
+var CommentModel = Backbone.Model.extend({});
 
 var CommentsCollection = Backbone.Collection.extend({
+  model: CommentModel,
   initialize: function(models, options) {
     /*
      * TODO:
@@ -16,32 +10,33 @@ var CommentsCollection = Backbone.Collection.extend({
      * from Model and Views
      * https://github.com/jashkenas/backbone/issues/661
      * */
-    /*
-     * REMINDER:
-     * it sets a default for the incoming parameters
-     * */
     options = options || {};
     if(!options.post) { return; }
 
     this.post = options.post;
   },
   url: function() {
-    // this returns undefined for some reason
-    //console.log('from commentcollection: ', this.post.url());
-    return this.post.url() + "/comments";
-  },
-  model: CommentModel
-});
-
-var c = new CommentsCollection();
-console.log(c);
-
-var p = new PostModel({id:4});
-console.log(p.comments.url());
-p.fetch({
-  success: function(a,b,c) {
-    console.log(a);
-    console.log(b)
+    //return this.post.url() + "/comments";
+    return localserver + "/posts/" + this.post + "/comments";
   }
 });
-//console.log(p);
+
+var PostModel = Backbone.Model.extend({
+  urlRoot: localserver + "/posts",
+  initialize: function() {
+    /*
+     * we are connecting Comments collection 
+     * to each post item by passing along post id
+     * */
+    /*
+     * this is another way of getting comments associated with this specific post
+     * were not using it right now.. we'll learn about it soon though
+     */
+    //this.comments = new CommentsCollection([], { post: this });
+  }
+});
+
+var PostsCollection = Backbone.Collection.extend({
+  model: PostModel,
+  url: localserver + "/posts?_sort=views&_order=DESC"
+});

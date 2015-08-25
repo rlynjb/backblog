@@ -4,10 +4,18 @@
 // WAS transferring code but came across an Event issue with listenTo
 var blogController = {
   showBlogPost: function(id, e) {
+    // Fetch specific blog post
     var blogPost = new PostModel({id:id});
     blogPost.fetch();
     e.listenTo( blogPost, 'sync', function() {
       e.view = new PostPageView({ model: blogPost});
+    });
+
+    // Fetch Comments for specific blog post
+    var blogPostComments = new CommentsCollection([], { post: id });
+    blogPostComments.fetch();
+    e.listenTo( blogPostComments, 'sync', function() {
+      e.view = new CommentListWrapperView({ collection: blogPostComments });
     });
   }
 }
