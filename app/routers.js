@@ -17,7 +17,7 @@ var blogController = {
     e.listenTo( blogPostComments, 'sync', function() {
       e.view = new CommentListWrapperView({ collection: blogPostComments });
 
-      var cform = new CommentFormView();
+      var cform = new CommentFormView({ id: id });
     });
   }
 }

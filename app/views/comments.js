@@ -41,7 +41,8 @@ var CommentItemView = Backbone.View.extend({
 var CommentFormView = Backbone.View.extend({
   el: "#commentForm",
   template: _.template( $('#comment-form').html() ),
-  initialize: function() {
+  initialize: function(options) {
+    this.id = options;
     this.render();
   },
   render: function() {
@@ -53,7 +54,7 @@ var CommentFormView = Backbone.View.extend({
   },
   submitComment: function() {
     var postAttr = {
-      postId: 'magic post id number here',
+      postId: this.id.id,
       name: $('#cmtName').val(),
       body: $('#cmtText').val()
     }
@@ -63,7 +64,7 @@ var CommentFormView = Backbone.View.extend({
      * coz we are re-instantiating PostsCollection and BlogRouter
      * There must be a proper backbonejs way
      * */
-    var g = new CommentsCollection();
+    var g = new CommentsCollection([], { post: this.id.id });
     var f = new BlogRouter();
     g.create(
       postAttr,
@@ -73,7 +74,7 @@ var CommentFormView = Backbone.View.extend({
           f.navigate('', {trigger:true});
         },
         error: function() {
-          console.log('error');
+          console.log('apparently, jsonplaceholder cant POST to comments, *sad face');
         }
       }
     );
