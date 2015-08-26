@@ -25,6 +25,11 @@
       "title": "another goofy post",
       "body": "goofy goofy kirby post",
       "id": 5
+    },
+    {
+      "title": "hello world",
+      "body": "hello kirby and kimo (my dog)",
+      "id": 6
     }
   ],
   "comments": [
