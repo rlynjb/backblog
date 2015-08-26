@@ -9,6 +9,7 @@
   "dependencies": {
     "backbone": "~1.2.1",
     "jquery": "~2.1.4",
-    "Backbone.localStorage": "~1.1.16"
+    "Backbone.localStorage": "~1.1.16",
+    "bootstrap": "~3.3.5"
   }
 }
