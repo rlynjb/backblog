@@ -11,7 +11,7 @@ to enable routes on backbonejs
 and visit the ff. local url
 
 
-# week1 (done)
+# week1
 
 - learned about Backbone Views, Parent and Nested Views
 - separated app.js code to category of models, collections, views (not using a module loader though)
@@ -26,8 +26,8 @@ and visit the ff. local url
 
 ------
 
-# week2 (goals)
+# week2 (half of week2)
 
 - understand about how initialize function work on Collections, Models, and Views
-- understand about javescript `this` keyword
-- understand how bind and bindAll work in Backbone http://blog.bigbinary.com/2011/08/18/understanding-bind-and-bindall-in-backbone.html
+- understood how oop contructure/initialize and this work in classes
+- pass id to router to populate child items (collection of models) in specific parent model
